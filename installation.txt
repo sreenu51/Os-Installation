@@ -1,0 +1,44 @@
+#!/bin/bash
+#install script from ubuntu 16.04
+#installing some basic system utilites first
+
+cd ~
+sudo apt-get update -qq
+sudo apt-get install -yy htop gdebi synaptic grsync bleachbit gufw
+
+#installing software from the repository
+sudo apt-get install -yy asunder lame flac virtualbox virtualbox-ext-pack skype \
+openssh-server numix-gtk-theme easymp3gain-gtk vorbisgain unity-tweak-tool
+
+sudo adduser sreenu vboxusers
+
+#installing google chrome and ocenaudio
+cd /home/sreenu/Downloads
+
+wget <----------------iso file url-------->
+sudo gdebi -n google-chrome-stable_current_amd64.deb
+wget https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian61.deb
+
+sudo gdebi -n ocenaudio_debian64.deb
+rm -f google-chrome-stable_current_amd64.deb ocenaudio_debian64.deb
+cd ~
+
+# installing simplescreenRecorder and spotify
+
+sudo apt-add-repository -y ppa:maarten-baert/simplescreenrecorder
+sudo apt-add-repository -y "deb http://rrepository.spotify.com stable non-free"
+sudo apt-get update -qq
+sudo apt-get install -yy simplescreenrecorder spotify-client
+
+#doing a few system tweaks
+
+sudo echo "vm.swappiness = 10" >> /etc/sysctl.conf
+sudo apt-get remove -yy gstreamer1.0-fluendo-mp3
+mkdir /home/sreenu/Work
+cd /home/sreenu/Desktop
+ln -s /home/sreenu/Work Work
+cd ~
+
+#installation done
+
+echo"all done|"
